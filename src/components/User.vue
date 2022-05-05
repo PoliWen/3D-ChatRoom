@@ -4,12 +4,18 @@
     toon
     physics="character"
     ref="rolRef"
+    :x="role.x"
+    :y="role.y"
+    :z="role.z"
+    :rotationX="role.rotationX"
+    :rotationY="role.rotationY"
+    :rotationZ="role.rotationZ"
+    :animation="role.ani || 'idle'"
     :animations="{
       idle: `${role.avator}/Idle.fbx`,
       running: `${role.avator}/Running.fbx`,
       walking: `${role.avator}/walking.fbx`
     }"
-    :animation="ani"
   >
     <HTML>
       <h3 class="userName">{{ role.userName }}</h3>
@@ -20,7 +26,6 @@
 import { defineProps, ref } from 'vue'
 import { Model, HTML } from 'lingo3d-vue'
 
-const ani = ref('idle')
 const props = defineProps({
   role: {
     default: null,

@@ -58,4 +58,14 @@ socket.on('connection', (conn) => {
   conn.on('sendMsg', (data) => {
     socket.emit('recieveMsg', data)
   })
+
+  conn.on('update', (data) => {
+    users.forEach((item, index) => {
+      if (item.userName === data.userName) {
+        users[index] = data
+      }
+    })
+
+    socket.emit('update', users)
+  })
 })

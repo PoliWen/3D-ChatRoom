@@ -14,7 +14,7 @@
         <User :role="item" v-if="item.userName !== chatRoom.chatData.myself.userName" />
       </div>
 
-      <Skybox texture="buuilding.gbl" />
+      <Skybox texture="building.gbl" />
     </World>
 
     <Keyboard @key-down="handleKeyDown" />
@@ -48,7 +48,11 @@ const progress = usePreload(
     'girl/Role.fbx',
     'girl/Idle.fbx',
     'girl/Running.fbx',
-    'girl/walking.fbx'
+    'girl/walking.fbx',
+    'girl2/Role.fbx',
+    'girl2/Idle.fbx',
+    'girl2/Running.fbx',
+    'girl2/walking.fbx'
   ],
   '55.4mb'
 )
@@ -113,6 +117,11 @@ socket.on('recieveMsg', (data: any) => {
   if (chatRoomRef.value) {
     chatRoomRef.value.scrollToBootm()
   }
+})
+
+socket.on('update', (users: any) => {
+  chatRoom.chatData.users = users
+  console.log(chatRoom.chatData.users, users)
 })
 
 const chatRoomVisible = ref(false)
