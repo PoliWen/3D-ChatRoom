@@ -61,6 +61,13 @@ const handleKeyDown = (key: string) => {
     updateState()
   }
 }
+
+// todo list
+// toast
+// 节流
+// 逻辑优化
+// 点击关闭聊天弹窗
+// 进度条优化
 </script>
 
 <style lang="scss" scoped>
