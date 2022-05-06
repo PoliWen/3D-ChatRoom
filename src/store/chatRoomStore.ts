@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
+import { RoomStore } from '@/types'
 
 export default defineStore('chatRoomStore', {
-  state: () => {
+  state: (): RoomStore => {
     return {
       chatData: {
         count: 0,

@@ -23,6 +23,12 @@ module.exports = {
     'no-use-before-define': 0,
     'import/no-unresolved': 0,
     'import/extensions': 0,
-    'no-alert': 0
+    'no-alert': 0,
+    'vue/multi-word-component-names': [
+      'error',
+      {
+        ignores: ['User', 'Loading', 'Role', 'Toast', 'Login']
+      }
+    ]
   }
 }

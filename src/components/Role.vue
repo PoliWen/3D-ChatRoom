@@ -19,13 +19,15 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useThrottleFn } from '@vueuse/core'
 import { Model, Keyboard, HTML } from 'lingo3d-vue'
-import chatRoomStore from '@/store/chatRoom'
+import chatRoomStore from '@/store/chatRoomStore'
 import socket from '@/utils/socket'
 
 const chatRoom = chatRoomStore()
 
-const updateState = () => {
+const updatePosition = useThrottleFn(() => {
+  console.log(456)
   socket.emit('update', {
     x: rolRef.value!.x,
     y: rolRef.value!.y,
@@ -37,13 +39,14 @@ const updateState = () => {
     userName: chatRoom.chatData.myself.userName,
     avator: chatRoom.chatData.myself.avator
   })
-}
+}, 100)
+
 const rolRef = ref()
 const ani = ref('idle')
 const handleKeyUp = (key: string) => {
   if (key === 'w' || key === 'r') {
     ani.value = 'idle'
-    updateState()
+    updatePosition()
   }
 }
 
@@ -53,12 +56,13 @@ const handleKeyDown = (key: string) => {
   if (key === 'w') {
     ani.value = 'walking'
     rolRef.value?.moveForward(-4)
-    updateState()
+    console.log(123)
+    updatePosition()
   }
   if (key === 'r') {
     ani.value = 'running'
     rolRef.value?.moveForward(-10)
-    updateState()
+    updatePosition()
   }
 }
 

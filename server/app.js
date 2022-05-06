@@ -5,9 +5,7 @@ const port = 8080
 app.get('/', (req, res) => {
   res.send('success')
 })
-server.listen(port, () => {
-  console.log('127.0.0.1:8080')
-})
+server.listen(port)
 
 const socket = require('socket.io')(server, {
   cors: {
@@ -59,6 +57,7 @@ socket.on('connection', (conn) => {
     socket.emit('recieveMsg', data)
   })
 
+  // 更新人物动画状态
   conn.on('update', (data) => {
     users.forEach((item, index) => {
       if (item.userName === data.userName) {

@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, expose } from 'vue'
+import { ref, defineExpose, defineProps } from 'vue'
 
 const props = defineProps({
   message: {
@@ -25,12 +25,11 @@ const props = defineProps({
 })
 
 const visible = ref(false)
-
 const close = () => {
   visible.value = false
 }
 
-let timer = null
+let timer: any = null
 const open = () => {
   visible.value = true
   clearInterval(timer)
@@ -39,7 +38,7 @@ const open = () => {
   }, props.delay as number)
 }
 
-expose({
+defineExpose({
   open,
   close
 })

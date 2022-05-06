@@ -1,5 +1,5 @@
 <template>
-  <section class="chat-room" ref="chatRoomRef">
+  <section class="chat-room">
     <div class="sider-bar">
       <div class="user-info">
         <div class="avator">
@@ -17,6 +17,7 @@
         </div>
       </div>
     </div>
+
     <div class="right-room">
       <h3 class="title">当前在线 ({{ chatRoom.chatData.count }})</h3>
       <div class="chat-info" ref="chatRef">
@@ -52,6 +53,7 @@
           </div>
         </div>
       </div>
+
       <div class="send-panel">
         <div class="tool-bar">
           <span class="pic">
@@ -66,15 +68,15 @@
   </section>
 </template>
 <script setup lang="ts">
-import { ref, expose } from 'vue'
+import { ref, defineExpose } from 'vue'
 import socket from '@/utils/socket'
-import avatorConfig from '@/dataSurce/avator'
-import chatRoomStore from '@/store/chatRoom'
+import { avatorConfig } from '@/dataSurce/avator'
+import chatRoomStore from '@/store/chatRoomStore'
 
 const chatRoom = chatRoomStore()
 
 const findAvatorSrc = (avatorName: string) => {
-  return avatorConfig.find((item: any) => item.name === avatorName).src
+  return avatorConfig.find((item) => item.name === avatorName)?.src
 }
 
 // 滚动到最下面
@@ -100,7 +102,7 @@ const scrollToBootm = () => {
     chatRef.value.scrollTop = chatRef.value.scrollHeight
   }, 100)
 }
-expose({ scrollToBootm })
+defineExpose({ scrollToBootm })
 
 // 发送图片
 const fileRef = ref()

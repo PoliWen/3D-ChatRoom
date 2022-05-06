@@ -26,11 +26,10 @@
 <script setup lang="ts">
 import { ref, defineEmits } from 'vue'
 
-import avatorConfig from '@/dataSurce/avator'
+import { avatorConfig } from '@/dataSurce/avator'
 
-// 向服务器发送消息
-const userName = ref('') // 用户名
-const avator = ref('') // 头像
+const userName = ref('')
+const avator = ref('')
 const userNameValidate = ref(true)
 const avatorValidate = ref(true)
 const emit = defineEmits(['submit'])
@@ -47,11 +46,8 @@ const submit = () => {
   }
   avatorValidate.value = true
 
+  // 向服务器发送消息
   emit('submit', {
-    userName: userName.value,
-    avator: avator.value
-  })
-  console.log('login', {
     userName: userName.value,
     avator: avator.value
   })
