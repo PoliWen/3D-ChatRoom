@@ -18,7 +18,7 @@
   <Keyboard @key-up="handleKeyUp" @key-down="handleKeyDown" />
 </template>
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import { Model, Keyboard, HTML } from 'lingo3d-vue'
 import chatRoomStore from '@/store/chatRoom'
 import socket from '@/utils/socket'

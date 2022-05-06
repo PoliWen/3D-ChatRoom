@@ -1,5 +1,5 @@
 <template>
-  <section class="chat-room">
+  <section class="chat-room" ref="chatRoomRef">
     <div class="sider-bar">
       <div class="user-info">
         <div class="avator">
@@ -68,11 +68,8 @@
 <script setup lang="ts">
 import { ref, expose } from 'vue'
 import socket from '@/utils/socket'
-
 import avatorConfig from '@/dataSurce/avator'
-
 import chatRoomStore from '@/store/chatRoom'
-import avator from '../dataSurce/avator'
 
 const chatRoom = chatRoomStore()
 
@@ -80,10 +77,8 @@ const findAvatorSrc = (avatorName: string) => {
   return avatorConfig.find((item: any) => item.name === avatorName).src
 }
 
-const content = ref('')
-
 // 滚动到最下面
-
+const content = ref('')
 const sendMsg = () => {
   if (!content.value) {
     alert('请输入内容')
@@ -102,16 +97,12 @@ const sendMsg = () => {
 const chatRef = ref()
 const scrollToBootm = () => {
   setTimeout(() => {
-    console.log('height', chatRef.value.scrollHeight)
     chatRef.value.scrollTop = chatRef.value.scrollHeight
   }, 100)
 }
 expose({ scrollToBootm })
 
-document.onkeyup = (e) => {
-  if (e.keyCode === 13) sendMsg()
-}
-
+// 发送图片
 const fileRef = ref()
 const sendImg = () => {
   const file = fileRef.value.files[0]
@@ -124,6 +115,10 @@ const sendImg = () => {
       img: fr.result
     })
   }
+}
+
+document.onkeyup = (e) => {
+  if (e.keyCode === 13) sendMsg()
 }
 </script>
 

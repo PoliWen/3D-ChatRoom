@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const socket = new WebSocket('ws://localhost:8080/')
+const socket = new WebSocket('ws://192.168.2.74:8080')
 const msg = ref('Welcome to Chat Room')
 const chatContent = ref('')
 const info = ref('')

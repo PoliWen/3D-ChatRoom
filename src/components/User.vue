@@ -23,9 +23,10 @@
   </Model>
 </template>
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { defineProps } from 'vue'
 import { Model, HTML } from 'lingo3d-vue'
 
+// eslint-disable-next-line no-unused-vars
 const props = defineProps({
   role: {
     default: null,

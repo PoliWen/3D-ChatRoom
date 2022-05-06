@@ -11,7 +11,7 @@ server.listen(port, () => {
 
 const socket = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://192.168.2.74:3000',
     methods: ['GET', 'POST']
   }
 })

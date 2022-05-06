@@ -11,11 +11,12 @@ export default defineConfig({
     }
   },
   server: {
+    host: '0.0.0.0',
     open: true,
     port: 3000,
     proxy: {
       '/socket.io': {
-        target: 'ws://localhost:8080',
+        target: 'ws://192.168.2.74:8080',
         ws: true
       }
     }

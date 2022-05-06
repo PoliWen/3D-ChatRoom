@@ -5,7 +5,10 @@
   </div>
 </template>
 <script setup lang="ts">
-defineProps({
+import { defineProps } from 'vue'
+
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
   progress: {
     default: 0,
     type: Number

@@ -9,8 +9,6 @@
       </ThirdPersonCamera>
 
       <div v-for="(item, index) in chatRoom.chatData.users" :key="index">
-        {{ item }}
-        {{ chatRoom.chatData.myself.userName }}
         <User :role="item" v-if="item.userName !== chatRoom.chatData.myself.userName" />
       </div>
 
@@ -19,7 +17,7 @@
 
     <Keyboard @key-down="handleKeyDown" />
     <div class="help">
-      <p>W(走),R(跑)</p>
+      <p>W(走)，R(跑)</p>
       <p>T打开聊天窗口</p>
     </div>
   </div>
@@ -54,11 +52,10 @@ const progress = usePreload(
     'girl2/Running.fbx',
     'girl2/walking.fbx'
   ],
-  '55.4mb'
+  '108.093mb'
 )
 
 const chatRoom = chatRoomStore()
-const chatRoomRef = ref()
 
 const isLogin = ref(false)
 const joinChat = (user: any) => {
@@ -81,6 +78,7 @@ socket.on('loginSuccess', (myself: any) => {
   toastMsg.value = `${myself.userName}加入`
 })
 
+const chatRoomRef = ref()
 // 保存聊天信息
 socket.on('addUser', (msg: string) => {
   chatRoom.chatInfo.push({ systemMsg: msg })
@@ -125,7 +123,6 @@ socket.on('update', (users: any) => {
 })
 
 const chatRoomVisible = ref(false)
-
 const handleKeyDown = (key: string) => {
   if (key === 't') {
     chatRoomVisible.value = !chatRoomVisible.value
@@ -163,6 +160,7 @@ textarea {
   text-align: left;
 }
 body {
-  background: #4493cb;
+  background: url('@/assets/images/login_bg.png') no-repeat;
+  background-size: cover;
 }
 </style>
