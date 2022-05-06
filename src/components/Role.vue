@@ -51,7 +51,6 @@ const handleKeyUp = (key: string) => {
 }
 
 // 更新状态
-
 const handleKeyDown = (key: string) => {
   if (key === 'w') {
     ani.value = 'walking'
