@@ -71,6 +71,7 @@ const handleKeyDown = (key: string) => {
 // 逻辑优化
 // 点击关闭聊天弹窗
 // 进度条优化
+// todo,办公室漫游，多人会议室，楼层切换
 </script>
 
 <style lang="scss" scoped>
