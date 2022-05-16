@@ -25,7 +25,6 @@ import chatRoomStore from '@/store/chatRoomStore'
 import socket from '@/utils/socket'
 
 const chatRoom = chatRoomStore()
-
 const updatePosition = useThrottleFn(() => {
   console.log(456)
   socket.emit('update', {

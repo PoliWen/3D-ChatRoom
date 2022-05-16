@@ -3,7 +3,7 @@
   <Login v-if="!isLogin && progress === 100" @submit="joinChat" />
   <div v-if="progress === 100 && isLogin">
     <World>
-      <Model src="sceren.glb" :scale="6" physics="map" />
+      <Model src="yes.glb" :scale="3" physics="map" />
       <ThirdPersonCamera active mouseControl>
         <Role />
       </ThirdPersonCamera>
@@ -12,7 +12,7 @@
         <User :role="item" v-if="item.userName !== chatRoom.chatData.myself.userName" />
       </div>
 
-      <Skybox texture="building.gbl" />
+      <Skybox texture="xx.hdr" />
     </World>
 
     <Keyboard @key-down="handleKeyDown" />
@@ -40,6 +40,7 @@ import { RoleItem } from '@/types'
 const progress = usePreload(
   [
     'sceren.glb',
+    'yes.glb',
     'boy/Role.fbx',
     'boy/Idle.fbx',
     'boy/Running.fbx',
