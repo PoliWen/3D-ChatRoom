@@ -29,8 +29,8 @@ import { Model, HTML } from 'lingo3d-vue'
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   role: {
-    default: null,
-    type: Object
+    type: Object,
+    default: null
   }
 })
 </script>

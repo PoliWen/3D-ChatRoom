@@ -14,7 +14,7 @@
         />
       </Model>
 
-      <ThirdPersonCamera active mouseControl="drag">
+      <ThirdPersonCamera active mouseControl>
         <Role />
       </ThirdPersonCamera>
 
