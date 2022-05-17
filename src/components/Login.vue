@@ -74,6 +74,7 @@ ul {
   background: #fff;
   padding: 40px;
   border-radius: 8px;
+  font-family: Helvetica, Arial, 'Microsoft Yahei';
   h3 {
     font-size: 24px;
     color: #333;

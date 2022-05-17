@@ -3,8 +3,18 @@
   <Login v-if="!isLogin && progress === 100" @submit="joinChat" />
   <div v-if="progress === 100 && isLogin">
     <World>
-      <Model src="yes.glb" :scale="3" physics="map" />
-      <ThirdPersonCamera active mouseControl>
+      <Model src="yes.glb" :scale="3" physics="map">
+        <Find
+          :name="`desk${i}`"
+          outline
+          @click="clickDesk(`desk${i}`)"
+          v-for="i in 16"
+          :key="i"
+          :id="`desk${i}`"
+        />
+      </Model>
+
+      <ThirdPersonCamera active mouseControl="drag">
         <Role />
       </ThirdPersonCamera>
 
@@ -13,6 +23,7 @@
       </div>
 
       <Skybox texture="xx.hdr" />
+      <!-- <Editor /> -->
     </World>
 
     <Keyboard @key-down="handleKeyDown" />
@@ -25,7 +36,7 @@
   <ChatRoom ref="chatRoomRef" v-if="chatRoomVisible" />
 </template>
 <script setup lang="ts">
-import { World, Model, usePreload, Skybox, ThirdPersonCamera, Keyboard } from 'lingo3d-vue'
+import { World, Model, usePreload, Skybox, ThirdPersonCamera, Keyboard, Find } from 'lingo3d-vue'
 import { ref } from 'vue'
 import Loading from '@/components/Loading.vue'
 import Login from '@/components/Login.vue'
@@ -129,8 +140,16 @@ const handleKeyDown = (key: string) => {
     chatRoomVisible.value = !chatRoomVisible.value
   }
 }
+
+const clickDesk = (deskName: string) => {
+  alert(`你点击了desk10${deskName}`)
+}
 </script>
 <style>
+body {
+  background: url('@/assets/images/login_bg.png') no-repeat;
+  background-size: cover;
+}
 * {
   box-sizing: border-box;
 }
@@ -159,9 +178,5 @@ textarea {
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   text-align: left;
-}
-body {
-  background: url('@/assets/images/login_bg.png') no-repeat;
-  background-size: cover;
 }
 </style>

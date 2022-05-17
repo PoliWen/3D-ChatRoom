@@ -24,6 +24,7 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/extensions': 0,
     'no-alert': 0,
+    'func-names': 0,
     'vue/multi-word-component-names': [
       'error',
       {

@@ -3,7 +3,12 @@
     :src="`${chatRoom.chatData.myself.avator}/role.fbx`"
     toon
     physics="character"
-    ref="rolRef"
+    ref="roleRef"
+    :x="483.29"
+    :y="-20.05"
+    :z="-327.2"
+    :intersectIDs="['desk1', 'desk2', 'desk3', 'desk4', 'desk5']"
+    @intersect="handleIntersect"
     :animations="{
       idle: `${chatRoom.chatData.myself.avator}/Idle.fbx`,
       running: `${chatRoom.chatData.myself.avator}/Running.fbx`,
@@ -26,21 +31,20 @@ import socket from '@/utils/socket'
 
 const chatRoom = chatRoomStore()
 const updatePosition = useThrottleFn(() => {
-  console.log(456)
   socket.emit('update', {
-    x: rolRef.value!.x,
-    y: rolRef.value!.y,
-    z: rolRef.value!.z,
-    rotationX: rolRef.value!.rotationX,
-    rotationY: rolRef.value!.rotationY,
-    rotationZ: rolRef.value!.rotationZ,
+    x: roleRef.value!.x,
+    y: roleRef.value!.y,
+    z: roleRef.value!.z,
+    rotationX: roleRef.value!.rotationX,
+    rotationY: roleRef.value!.rotationY,
+    rotationZ: roleRef.value!.rotationZ,
     ani: ani.value,
     userName: chatRoom.chatData.myself.userName,
     avator: chatRoom.chatData.myself.avator
   })
 }, 100)
 
-const rolRef = ref()
+const roleRef = ref()
 const ani = ref('idle')
 const handleKeyUp = (key: string) => {
   if (key === 'w' || key === 'r') {
@@ -53,15 +57,19 @@ const handleKeyUp = (key: string) => {
 const handleKeyDown = (key: string) => {
   if (key === 'w') {
     ani.value = 'walking'
-    rolRef.value?.moveForward(-4)
+    roleRef.value?.moveForward(-4)
     console.log(123)
     updatePosition()
   }
   if (key === 'r') {
     ani.value = 'running'
-    rolRef.value?.moveForward(-10)
+    roleRef.value?.moveForward(-10)
     updatePosition()
   }
+}
+
+const handleIntersect = () => {
+  console.log('你碰到我了')
 }
 
 // todo list
