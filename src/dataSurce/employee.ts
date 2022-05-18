@@ -1,6 +1,12 @@
 interface employeeInfo {
+  deskName: string
   name: string
-  src: string
+  department: string
+  position: string
+  jobNumber: number
+  hometown: string
+  jobDescription: string
+  hobby: string
 }
 
 // eslint-disable-next-line import/prefer-default-export

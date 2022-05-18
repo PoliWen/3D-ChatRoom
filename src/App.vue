@@ -32,6 +32,7 @@
       <p>T打开聊天窗口</p>
     </div>
   </div>
+  <UserInfo v-if="userInfoVisible" :userInfo="userInfo"></UserInfo>
   <Toast delay="3000" ref="toastRef" :message="toastMsg" />
   <ChatRoom ref="chatRoomRef" v-if="chatRoomVisible" />
 </template>
@@ -44,9 +45,11 @@ import ChatRoom from '@/components/ChatRoom.vue'
 import Role from '@/components/Role.vue'
 import User from '@/components/User.vue'
 import Toast from '@/components/toast/Toast.vue'
+import UserInfo from '@/components/UserInfo.vue'
 import socket from '@/utils/socket'
 import chatRoomStore from '@/store/chatRoomStore'
 import { RoleItem } from '@/types'
+import { employeeConfig } from '@/dataSurce'
 
 const progress = usePreload(
   [
@@ -141,9 +144,14 @@ const handleKeyDown = (key: string) => {
   }
 }
 
+//  个人信息
+const userInfo = ref()
+const userInfoVisible = ref()
 const clickDesk = (deskName: string) => {
   toastRef.value.open()
   toastMsg.value = `你点击了${deskName}`
+  userInfo.value = employeeConfig.filter((item) => item.deskName === deskName)
+  userInfoVisible.value = true
 }
 </script>
 <style>

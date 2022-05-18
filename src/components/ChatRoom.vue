@@ -70,7 +70,7 @@
 <script setup lang="ts">
 import { ref, defineExpose } from 'vue'
 import socket from '@/utils/socket'
-import { avatorConfig } from '@/dataSurce/avator'
+import { avatorConfig } from '@/dataSurce'
 import chatRoomStore from '@/store/chatRoomStore'
 
 const chatRoom = chatRoomStore()
