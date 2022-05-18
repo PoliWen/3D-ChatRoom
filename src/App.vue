@@ -142,7 +142,8 @@ const handleKeyDown = (key: string) => {
 }
 
 const clickDesk = (deskName: string) => {
-  alert(`你点击了desk10${deskName}`)
+  toastRef.value.open()
+  toastMsg.value = `你点击了${deskName}`
 }
 </script>
 <style>
