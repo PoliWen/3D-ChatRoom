@@ -6,15 +6,14 @@
       <Model src="yes.glb" :scale="3" physics="map">
         <Find
           :name="`desk${i}`"
-          outline
           @click="clickDesk(`desk${i}`)"
-          v-for="i in 16"
+          v-for="i in 90"
           :key="i"
           :id="`desk${i}`"
         />
       </Model>
 
-      <ThirdPersonCamera active mouseControl>
+      <ThirdPersonCamera active mouseControl="drag">
         <Role />
       </ThirdPersonCamera>
 
@@ -32,7 +31,7 @@
       <p>T打开聊天窗口</p>
     </div>
   </div>
-  <UserInfo v-if="userInfoVisible" :userInfo="userInfo"></UserInfo>
+  <UserInfo v-if="userInfoVisible" :userInfo="userInfo" @close="closeUser"></UserInfo>
   <Toast delay="3000" ref="toastRef" :message="toastMsg" />
   <ChatRoom ref="chatRoomRef" v-if="chatRoomVisible" />
 </template>
@@ -148,10 +147,16 @@ const handleKeyDown = (key: string) => {
 const userInfo = ref()
 const userInfoVisible = ref()
 const clickDesk = (deskName: string) => {
-  toastRef.value.open()
-  toastMsg.value = `你点击了${deskName}`
-  userInfo.value = employeeConfig.filter((item) => item.deskName === deskName)
-  userInfoVisible.value = true
+  userInfo.value = employeeConfig.filter((item) => item.deskName === deskName)[0]
+  console.log()
+  userInfoVisible.value = userInfo.value
+  if (!userInfoVisible.value) {
+    toastRef.value.open()
+    toastMsg.value = `这个座位暂时没人坐哦`
+  }
+}
+const closeUser = () => {
+  userInfoVisible.value = false
 }
 </script>
 <style>
