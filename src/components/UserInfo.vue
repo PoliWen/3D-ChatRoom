@@ -1,7 +1,7 @@
 <template>
   <div class="user-info-wrap">
     <div class="user-avator">
-      <img :src="`http://eagle.addcn.com/media/avatar/${userInfo.jobNumber}.jpg`" alt="" />
+      <img :src="`http://baidu.com/media/avatar/${userInfo.jobNumber}.jpg`" alt="" />
     </div>
     <div class="user-info">
       <p>
